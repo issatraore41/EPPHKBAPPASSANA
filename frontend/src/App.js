@@ -7,8 +7,16 @@ import SaisieNotes from '@/pages/SaisieNotes';
 import FicheRapport from '@/pages/FicheRapport';
 import SuiviClasse from '@/pages/SuiviClasse';
 import { Toaster } from '@/components/ui/sonner';
+import { useEffect, useState } from "react";
+import { getData } from "./lib/api";
 
 function App() {
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    getData("/").then((data) => setMessage(data.message));
+  }, []);
+  
   return (
     <div className="App">
       <BrowserRouter>
@@ -21,6 +29,8 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Toaster position="top-center" />
+   <h1>Frontend connecté à FastAPI ✅</h1>
+      <p>{message}</p>
     </div>
   );
 }
