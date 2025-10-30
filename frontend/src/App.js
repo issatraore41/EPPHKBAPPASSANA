@@ -29,7 +29,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Toaster position="top-center" />
-   <h1>Frontend connecté à FastAPI ✅</h1>
+   <h1>Frontend CRA connecté à FastAPI RENDER ✅</h1>
       <p>{message}</p>
     </div>
   );
