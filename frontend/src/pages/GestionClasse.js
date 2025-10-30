@@ -325,6 +325,9 @@ const GestionClasse = () => {
                   <DialogContent data-testid="dialog-composition">
                     <DialogHeader>
                       <DialogTitle>{editModeCompo ? 'Modifier la composition' : 'Créer une composition'}</DialogTitle>
+                      <DialogDescription>
+                        {editModeCompo ? 'Modifiez les informations de la composition' : 'Créez une nouvelle composition pour cette classe'}
+                      </DialogDescription>
                     </DialogHeader>
                     <form onSubmit={handleCompoSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                       <div>
