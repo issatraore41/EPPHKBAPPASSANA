@@ -10,9 +10,10 @@ from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
 origins = [
-"http://localhost:5173",              # dev local
+"http://localhost:3000",              # dev local
     "https://epp-hkb-app-assana.onrender.com",
 ]
 
@@ -439,7 +440,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+@app.get("/")
+def root():
+    return {"message": "API FastAPI Render OK ✅"}
 
+app.include_router(api_router)
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
