@@ -1,10 +1,4 @@
-from fastapi import FastAPI
-
-app = FastAPI()
-
-@app.get("/")
-def home():
-    return {"message": "Bienvenue sur l’API FastAPI hébergée sur Render 🎉"}
+from fastapi import FastAPI, APIRouter
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -24,8 +18,10 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
+# ✅ Une seule instance
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
+
 
 # ========== MODELS ==========
 
