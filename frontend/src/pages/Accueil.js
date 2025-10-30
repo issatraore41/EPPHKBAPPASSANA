@@ -125,6 +125,9 @@ const Accueil = () => {
           <DialogContent data-testid="dialog-classe">
             <DialogHeader>
               <DialogTitle>{editMode ? 'Modifier la classe' : 'Créer une nouvelle classe'}</DialogTitle>
+              <DialogDescription>
+                {editMode ? 'Modifiez les informations de la classe' : 'Remplissez les informations pour créer une nouvelle classe'}
+              </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div>
