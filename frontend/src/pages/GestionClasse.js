@@ -219,6 +219,9 @@ const GestionClasse = () => {
                   <DialogContent data-testid="dialog-eleve">
                     <DialogHeader>
                       <DialogTitle>{editModeEleve ? 'Modifier l\'élève' : 'Ajouter un élève'}</DialogTitle>
+                      <DialogDescription>
+                        {editModeEleve ? 'Modifiez les informations de l\'élève' : 'Entrez les informations du nouvel élève'}
+                      </DialogDescription>
                     </DialogHeader>
                     <form onSubmit={handleEleveSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                       <div>
