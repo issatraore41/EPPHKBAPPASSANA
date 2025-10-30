@@ -1,4 +1,10 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def home():
+    return {"message": "Bienvenue sur l’API FastAPI hébergée sur Render 🎉"}
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
