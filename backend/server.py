@@ -9,8 +9,21 @@ from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
+from fastapi.middleware.cors import CORSMiddleware
 
-ROOT_DIR = Path(__file__).parent
+origins = [
+"http://localhost:5173",              # dev local
+    "https://epp-hkb-app-assana.onrender.com",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+    ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
 # MongoDB connection
