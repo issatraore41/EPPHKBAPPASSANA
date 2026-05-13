@@ -114,7 +114,7 @@ const SuiviClasse = () => {
                     <TableHead style={{ color: 'white', fontWeight: 'bold', border: '1px solid #ddd', position: 'sticky', left: 0, background: '#3b82f6', minWidth: '200px' }}>Nom et Prénoms</TableHead>
                     {compositions.map((compo) => (
                       <TableHead key={compo.id} style={{ color: 'white', fontWeight: 'bold', border: '1px solid #ddd', textAlign: 'center', minWidth: '120px' }}>
-                        Compo {compo.numero}<br/>
+                        Compo {compo.numero}{compo.numero === 4 ? ' (×2)' : ''}<br/>
                         <span style={{ fontSize: '11px', fontWeight: 'normal' }}>{compo.mois}</span>
                       </TableHead>
                     ))}
@@ -132,11 +132,22 @@ const SuiviClasse = () => {
                     suivi.map((item) => {
                       const eleve = item.eleve;
                       const notes = item.notes;
-                      
-                      // Calculer la moyenne générale
-                      const moyennes = notes.filter(n => n !== null).map(n => n.moyenne);
-                      const moyenneGenerale = moyennes.length > 0
-                        ? (moyennes.reduce((a, b) => a + b, 0) / moyennes.length).toFixed(2)
+
+                      // Calculer la moyenne générale pondérée
+                      // Formule: (Moy Compo1 + Moy Compo2 + Moy Compo3 + Moy Compo4 × 2) / 5
+                      // La composition 4 (passage) compte double
+                      let sommePonderee = 0;
+                      let sommeCoefficients = 0;
+                      notes.forEach((note, idx) => {
+                        if (note !== null) {
+                          const numero = compositions[idx].numero;
+                          const coefficient = numero === 4 ? 2 : 1;
+                          sommePonderee += note.moyenne * coefficient;
+                          sommeCoefficients += coefficient;
+                        }
+                      });
+                      const moyenneGenerale = sommeCoefficients > 0
+                        ? (sommePonderee / sommeCoefficients).toFixed(2)
                         : '-';
 
                       return (
@@ -175,6 +186,11 @@ const SuiviClasse = () => {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '8px', fontSize: '14px' }}>
             <div>Nombre de compositions: <strong>{compositions.length}</strong></div>
             <div>Nombre d'élèves: <strong>{suivi.length}</strong></div>
+          </div>
+          <div style={{ marginTop: '12px', padding: '10px', background: '#fff7ed', border: '1px solid #fdba74', borderRadius: '6px', fontSize: '13px' }}>
+            <strong>Formule de la Moyenne Générale :</strong><br/>
+            (Moy. Compo 1 + Moy. Compo 2 + Moy. Compo 3 + Moy. Compo 4 × 2) / 5<br/>
+            <span style={{ fontSize: '12px', color: '#666' }}>La composition n°4 (passage) compte double.</span>
           </div>
         </div>
 
