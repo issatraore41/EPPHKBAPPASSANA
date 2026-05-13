@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
-import { ArrowLeft, Plus, Users, FileText, Trash2, Edit, ClipboardList, BarChart } from 'lucide-react';
+import { ArrowLeft, Plus, Users, FileText, Trash2, Edit, ClipboardList, BarChart, Trophy } from 'lucide-react';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -183,7 +183,7 @@ const GestionClasse = () => {
         </p>
       </div>
 
-      <div style={{ marginBottom: '24px', display: 'flex', gap: '12px' }}>
+      <div style={{ marginBottom: '24px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
         <Button
           onClick={() => navigate(`/classe/${classeId}/suivi`)}
           data-testid="btn-suivi-classe"
@@ -192,6 +192,14 @@ const GestionClasse = () => {
         >
           <BarChart size={20} style={{ marginRight: '8px' }} />
           Suivi sur 8 mois
+        </Button>
+        <Button
+          onClick={() => navigate(`/classe/${classeId}/rapport-general`)}
+          data-testid="btn-rapport-general"
+          className="bg-amber-500 hover:bg-amber-600 text-white"
+        >
+          <Trophy size={20} style={{ marginRight: '8px' }} />
+          Rapport Général (Classement)
         </Button>
       </div>
 

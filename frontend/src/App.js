@@ -6,6 +6,7 @@ import GestionClasse from '@/pages/GestionClasse';
 import SaisieNotes from '@/pages/SaisieNotes';
 import FicheRapport from '@/pages/FicheRapport';
 import SuiviClasse from '@/pages/SuiviClasse';
+import RapportGeneral from '@/pages/RapportGeneral';
 import { Toaster } from '@/components/ui/sonner';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/composition/:compositionId/notes" element={<SaisieNotes />} />
           <Route path="/composition/:compositionId/rapport" element={<FicheRapport />} />
           <Route path="/classe/:classeId/suivi" element={<SuiviClasse />} />
+          <Route path="/classe/:classeId/rapport-general" element={<RapportGeneral />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-center" />
